@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="825b8f29335943b59fc21dc058cc64bb" Name="Diagram1">
+        <EntityTypeShape EntityType="Book_ShopModel1.Authors" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Books" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Buyers" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Discounts" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.NextTome" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Publishers" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Reservations" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Sales" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Themes" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.Users" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_ShopModel1.InfoBook" Width="1.5" PointX="7.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Books__Id_Author__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Books__Id_Publis__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Books__Id_Theme__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Discounts__Id_Bo__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__NextTome__Id_Boo__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Reservati__Id_Bo__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Sales__Id_Book__7A672E12" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Buyers__Id_User__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Reservati__Id_Bu__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_ShopModel1.FK__Sales__Id_Buyer__797309D9" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

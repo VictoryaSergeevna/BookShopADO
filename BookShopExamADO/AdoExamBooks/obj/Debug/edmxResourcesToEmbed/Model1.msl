@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Book_ShopEntitiesStoreContainer" CdmEntityContainer="Book_ShopEntities1">
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Authors">
+        <MappingFragment StoreEntitySet="Authors">
+          <ScalarProperty Name="Id_Author" ColumnName="Id_Author" />
+          <ScalarProperty Name="FistName" ColumnName="FistName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+          <ScalarProperty Name="Id_Theme" ColumnName="Id_Theme" />
+          <ScalarProperty Name="Id_Author" ColumnName="Id_Author" />
+          <ScalarProperty Name="Id_Publisher" ColumnName="Id_Publisher" />
+          <ScalarProperty Name="NameBook" ColumnName="NameBook" />
+          <ScalarProperty Name="Pages" ColumnName="Pages" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buyers">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Buyers">
+        <MappingFragment StoreEntitySet="Buyers">
+          <ScalarProperty Name="Id_Buyer" ColumnName="Id_Buyer" />
+          <ScalarProperty Name="FistName" ColumnName="FistName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Discounts">
+        <MappingFragment StoreEntitySet="Discounts">
+          <ScalarProperty Name="Id_Discounts" ColumnName="Id_Discounts" />
+          <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+          <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NextTome">
+      <EntityTypeMapping TypeName="Book_ShopEntities.NextTome">
+        <MappingFragment StoreEntitySet="NextTome">
+          <ScalarProperty Name="Id_NextTome" ColumnName="Id_NextTome" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Publishers">
+        <MappingFragment StoreEntitySet="Publishers">
+          <ScalarProperty Name="Id_Publisher" ColumnName="Id_Publisher" />
+          <ScalarProperty Name="NamePublisher" ColumnName="NamePublisher" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Reservations">
+        <MappingFragment StoreEntitySet="Reservations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+          <ScalarProperty Name="Id_Buyer" ColumnName="Id_Buyer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Sales">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="Id_Sale" ColumnName="Id_Sale" />
+          <ScalarProperty Name="Id_Buyer" ColumnName="Id_Buyer" />
+          <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+          <ScalarProperty Name="DateOfSale" ColumnName="DateOfSale" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Themes">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Themes">
+        <MappingFragment StoreEntitySet="Themes">
+          <ScalarProperty Name="Id_Theme" ColumnName="Id_Theme" />
+          <ScalarProperty Name="NameGenre" ColumnName="NameGenre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Book_ShopEntities.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

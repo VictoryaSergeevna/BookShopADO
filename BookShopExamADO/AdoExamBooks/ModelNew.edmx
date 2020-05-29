@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Book_ShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="Id_Author" />
+          </Key>
+          <Property Name="Id_Author" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FistName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="Id_Book" />
+          </Key>
+          <Property Name="Id_Book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Theme" Type="int" Nullable="false" />
+          <Property Name="Id_Author" Type="int" Nullable="false" />
+          <Property Name="Id_Publisher" Type="int" Nullable="false" />
+          <Property Name="NameBook" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pages" Type="int" Nullable="false" />
+          <Property Name="DrawingOfBook" Type="int" Nullable="false" />
+          <Property Name="DateOfPublish" Type="date" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="ProductPrice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Buyers">
+          <Key>
+            <PropertyRef Name="Id_Buyer" />
+          </Key>
+          <Property Name="Id_Buyer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FistName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Id_User" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="Id_Discounts" />
+          </Key>
+          <Property Name="Id_Discounts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountPercent" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id_Book" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NextTome">
+          <Key>
+            <PropertyRef Name="Id_NextTome" />
+          </Key>
+          <Property Name="Id_NextTome" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Id_Book" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="Id_Publisher" />
+          </Key>
+          <Property Name="Id_Publisher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NamePublisher" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Book" Type="int" Nullable="false" />
+          <Property Name="Id_Buyer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="Id_Sale" />
+          </Key>
+          <Property Name="Id_Sale" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Buyer" Type="int" Nullable="false" />
+          <Property Name="Id_Book" Type="int" Nullable="false" />
+          <Property Name="DateOfSale" Type="date" Nullable="false" />
+          <Property Name="SalePrice" Type="money" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Themes">
+          <Key>
+            <PropertyRef Name="Id_Theme" />
+          </Key>
+          <Property Name="Id_Theme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameGenre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id_User" />
+          </Key>
+          <Property Name="Id_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Book_Shop.dbo.InfoBook" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="InfoBook">
+          <Key>
+            <PropertyRef Name="NameBook" />
+            <PropertyRef Name="Fullname Author" />
+            <PropertyRef Name="StateBook" />
+          </Key>
+          <Property Name="NameBook" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fullname Author" Type="nvarchar" MaxLength="201" Nullable="false" />
+          <Property Name="StateBook" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Books__Id_Author__72C60C4A">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="Id_Author" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Id_Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Id_Publis__71D1E811">
+          <End Role="Publishers" Type="Self.Publishers" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="Id_Publisher" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Id_Publisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Id_Theme__73BA3083">
+          <End Role="Themes" Type="Self.Themes" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Themes">
+              <PropertyRef Name="Id_Theme" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Id_Theme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Buyers__Id_User__76969D2E">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id_User" />
+            </Principal>
+            <Dependent Role="Buyers">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discounts__Id_Bo__75A278F5">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="Discounts">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NextTome__Id_Boo__74AE54BC">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="NextTome" Type="Self.NextTome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="NextTome">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Id_Bo__778AC167">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Id_Bu__787EE5A0">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="Id_Buyer" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Id_Buyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Id_Book__7A672E12">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Id_Buyer__797309D9">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="Id_Buyer" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Id_Buyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Book_ShopModelContainer">
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NextTome" EntityType="Self.NextTome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publishers" EntityType="Self.Publishers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Themes" EntityType="Self.Themes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoBook" EntityType="Self.InfoBook" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InfoBook].[NameBook] AS [NameBook], 
+    [InfoBook].[Fullname Author] AS [Fullname Author], 
+    [InfoBook].[StateBook] AS [StateBook]
+    FROM [dbo].[InfoBook] AS [InfoBook]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Books__Id_Author__72C60C4A" Association="Self.FK__Books__Id_Author__72C60C4A">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Id_Publis__71D1E811" Association="Self.FK__Books__Id_Publis__71D1E811">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Id_Theme__73BA3083" Association="Self.FK__Books__Id_Theme__73BA3083">
+            <End Role="Themes" EntitySet="Themes" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Buyers__Id_User__76969D2E" Association="Self.FK__Buyers__Id_User__76969D2E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Buyers" EntitySet="Buyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discounts__Id_Bo__75A278F5" Association="Self.FK__Discounts__Id_Bo__75A278F5">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Discounts" EntitySet="Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NextTome__Id_Boo__74AE54BC" Association="Self.FK__NextTome__Id_Boo__74AE54BC">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="NextTome" EntitySet="NextTome" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Id_Bo__778AC167" Association="Self.FK__Reservati__Id_Bo__778AC167">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Id_Bu__787EE5A0" Association="Self.FK__Reservati__Id_Bu__787EE5A0">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Id_Book__7A672E12" Association="Self.FK__Sales__Id_Book__7A672E12">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Id_Buyer__797309D9" Association="Self.FK__Sales__Id_Buyer__797309D9">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Book_ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="Id_Author" />
+          </Key>
+          <Property Name="Id_Author" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FistName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__Id_Author__72C60C4A" FromRole="Authors" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="Id_Book" />
+          </Key>
+          <Property Name="Id_Book" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Theme" Type="Int32" Nullable="false" />
+          <Property Name="Id_Author" Type="Int32" Nullable="false" />
+          <Property Name="Id_Publisher" Type="Int32" Nullable="false" />
+          <Property Name="NameBook" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pages" Type="Int32" Nullable="false" />
+          <Property Name="DrawingOfBook" Type="Int32" Nullable="false" />
+          <Property Name="DateOfPublish" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Authors" Relationship="Self.FK__Books__Id_Author__72C60C4A" FromRole="Books" ToRole="Authors" />
+          <NavigationProperty Name="Publishers" Relationship="Self.FK__Books__Id_Publis__71D1E811" FromRole="Books" ToRole="Publishers" />
+          <NavigationProperty Name="Themes" Relationship="Self.FK__Books__Id_Theme__73BA3083" FromRole="Books" ToRole="Themes" />
+          <NavigationProperty Name="Discounts" Relationship="Self.FK__Discounts__Id_Bo__75A278F5" FromRole="Books" ToRole="Discounts" />
+          <NavigationProperty Name="NextTome" Relationship="Self.FK__NextTome__Id_Boo__74AE54BC" FromRole="Books" ToRole="NextTome" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Id_Bo__778AC167" FromRole="Books" ToRole="Reservations" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Id_Book__7A672E12" FromRole="Books" ToRole="Sales" />
+        </EntityType>
+        <EntityType Name="Buyers">
+          <Key>
+            <PropertyRef Name="Id_Buyer" />
+          </Key>
+          <Property Name="Id_Buyer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FistName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_User" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Buyers__Id_User__76969D2E" FromRole="Buyers" ToRole="Users" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Id_Bu__787EE5A0" FromRole="Buyers" ToRole="Reservations" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Id_Buyer__797309D9" FromRole="Buyers" ToRole="Sales" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="Id_Discounts" />
+          </Key>
+          <Property Name="Id_Discounts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountPercent" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id_Book" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Discounts__Id_Bo__75A278F5" FromRole="Discounts" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="NextTome">
+          <Key>
+            <PropertyRef Name="Id_NextTome" />
+          </Key>
+          <Property Name="Id_NextTome" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Id_Book" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__NextTome__Id_Boo__74AE54BC" FromRole="NextTome" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="Id_Publisher" />
+          </Key>
+          <Property Name="Id_Publisher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamePublisher" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__Id_Publis__71D1E811" FromRole="Publishers" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Book" Type="Int32" Nullable="false" />
+          <Property Name="Id_Buyer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Reservati__Id_Bo__778AC167" FromRole="Reservations" ToRole="Books" />
+          <NavigationProperty Name="Buyers" Relationship="Self.FK__Reservati__Id_Bu__787EE5A0" FromRole="Reservations" ToRole="Buyers" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="Id_Sale" />
+          </Key>
+          <Property Name="Id_Sale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Buyer" Type="Int32" Nullable="false" />
+          <Property Name="Id_Book" Type="Int32" Nullable="false" />
+          <Property Name="DateOfSale" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SalePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Sales__Id_Book__7A672E12" FromRole="Sales" ToRole="Books" />
+          <NavigationProperty Name="Buyers" Relationship="Self.FK__Sales__Id_Buyer__797309D9" FromRole="Sales" ToRole="Buyers" />
+        </EntityType>
+        <EntityType Name="Themes">
+          <Key>
+            <PropertyRef Name="Id_Theme" />
+          </Key>
+          <Property Name="Id_Theme" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameGenre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__Id_Theme__73BA3083" FromRole="Themes" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id_User" />
+          </Key>
+          <Property Name="Id_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Buyers" Relationship="Self.FK__Buyers__Id_User__76969D2E" FromRole="Users" ToRole="Buyers" />
+        </EntityType>
+        <EntityType Name="InfoBook">
+          <Key>
+            <PropertyRef Name="NameBook" />
+            <PropertyRef Name="Fullname_Author" />
+            <PropertyRef Name="StateBook" />
+          </Key>
+          <Property Name="NameBook" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fullname_Author" Type="String" MaxLength="201" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateBook" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Books__Id_Author__72C60C4A">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="Id_Author" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Id_Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Id_Publis__71D1E811">
+          <End Role="Publishers" Type="Self.Publishers" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="Id_Publisher" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Id_Publisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Id_Theme__73BA3083">
+          <End Role="Themes" Type="Self.Themes" Multiplicity="1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Themes">
+              <PropertyRef Name="Id_Theme" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Id_Theme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Discounts__Id_Bo__75A278F5">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="Discounts">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NextTome__Id_Boo__74AE54BC">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="NextTome" Type="Self.NextTome" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="NextTome">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Id_Bo__778AC167">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Id_Book__7A672E12">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id_Book" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Id_Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Buyers__Id_User__76969D2E">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id_User" />
+            </Principal>
+            <Dependent Role="Buyers">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Id_Bu__787EE5A0">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="Id_Buyer" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Id_Buyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Id_Buyer__797309D9">
+          <End Role="Buyers" Type="Self.Buyers" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyers">
+              <PropertyRef Name="Id_Buyer" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="Id_Buyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Book_ShopEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Authors" />
+          <EntitySet Name="Books" EntityType="Self.Books" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyers" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" />
+          <EntitySet Name="NextTome" EntityType="Self.NextTome" />
+          <EntitySet Name="Publishers" EntityType="Self.Publishers" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" />
+          <EntitySet Name="Themes" EntityType="Self.Themes" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="InfoBook" EntityType="Self.InfoBook" />
+          <AssociationSet Name="FK__Books__Id_Author__72C60C4A" Association="Self.FK__Books__Id_Author__72C60C4A">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Id_Publis__71D1E811" Association="Self.FK__Books__Id_Publis__71D1E811">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Id_Theme__73BA3083" Association="Self.FK__Books__Id_Theme__73BA3083">
+            <End Role="Themes" EntitySet="Themes" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Discounts__Id_Bo__75A278F5" Association="Self.FK__Discounts__Id_Bo__75A278F5">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Discounts" EntitySet="Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NextTome__Id_Boo__74AE54BC" Association="Self.FK__NextTome__Id_Boo__74AE54BC">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="NextTome" EntitySet="NextTome" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Id_Bo__778AC167" Association="Self.FK__Reservati__Id_Bo__778AC167">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Id_Book__7A672E12" Association="Self.FK__Sales__Id_Book__7A672E12">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Buyers__Id_User__76969D2E" Association="Self.FK__Buyers__Id_User__76969D2E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Buyers" EntitySet="Buyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Id_Bu__787EE5A0" Association="Self.FK__Reservati__Id_Bu__787EE5A0">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Id_Buyer__797309D9" Association="Self.FK__Sales__Id_Buyer__797309D9">
+            <End Role="Buyers" EntitySet="Buyers" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Book_ShopModelContainer" CdmEntityContainer="Book_ShopEntities2">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="Book_ShopModel.Authors">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="Id_Author" ColumnName="Id_Author" />
+                <ScalarProperty Name="FistName" ColumnName="FistName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="Book_ShopModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+                <ScalarProperty Name="Id_Theme" ColumnName="Id_Theme" />
+                <ScalarProperty Name="Id_Author" ColumnName="Id_Author" />
+                <ScalarProperty Name="Id_Publisher" ColumnName="Id_Publisher" />
+                <ScalarProperty Name="NameBook" ColumnName="NameBook" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="DrawingOfBook" ColumnName="DrawingOfBook" />
+                <ScalarProperty Name="DateOfPublish" ColumnName="DateOfPublish" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buyers">
+            <EntityTypeMapping TypeName="Book_ShopModel.Buyers">
+              <MappingFragment StoreEntitySet="Buyers">
+                <ScalarProperty Name="Id_Buyer" ColumnName="Id_Buyer" />
+                <ScalarProperty Name="FistName" ColumnName="FistName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="Book_ShopModel.Discounts">
+              <MappingFragment StoreEntitySet="Discounts">
+                <ScalarProperty Name="Id_Discounts" ColumnName="Id_Discounts" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NextTome">
+            <EntityTypeMapping TypeName="Book_ShopModel.NextTome">
+              <MappingFragment StoreEntitySet="NextTome">
+                <ScalarProperty Name="Id_NextTome" ColumnName="Id_NextTome" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="Book_ShopModel.Publishers">
+              <MappingFragment StoreEntitySet="Publishers">
+                <ScalarProperty Name="Id_Publisher" ColumnName="Id_Publisher" />
+                <ScalarProperty Name="NamePublisher" ColumnName="NamePublisher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="Book_ShopModel.Reservations">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+                <ScalarProperty Name="Id_Buyer" ColumnName="Id_Buyer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="Book_ShopModel.Sales">
+              <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="Id_Sale" ColumnName="Id_Sale" />
+                <ScalarProperty Name="Id_Buyer" ColumnName="Id_Buyer" />
+                <ScalarProperty Name="Id_Book" ColumnName="Id_Book" />
+                <ScalarProperty Name="DateOfSale" ColumnName="DateOfSale" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Themes">
+            <EntityTypeMapping TypeName="Book_ShopModel.Themes">
+              <MappingFragment StoreEntitySet="Themes">
+                <ScalarProperty Name="Id_Theme" ColumnName="Id_Theme" />
+                <ScalarProperty Name="NameGenre" ColumnName="NameGenre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Book_ShopModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoBook">
+            <EntityTypeMapping TypeName="Book_ShopModel.InfoBook">
+              <MappingFragment StoreEntitySet="InfoBook">
+                <ScalarProperty Name="NameBook" ColumnName="NameBook" />
+                <ScalarProperty Name="Fullname_Author" ColumnName="Fullname Author" />
+                <ScalarProperty Name="StateBook" ColumnName="StateBook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
